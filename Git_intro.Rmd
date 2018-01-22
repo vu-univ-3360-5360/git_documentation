@@ -19,8 +19,16 @@ To get started, I would like you to install git on your personal computer.
 
 There are two  good options for git that work 
 
-* You can install a bare-bones version of git that runs from the Windows 
-  or linux command prompt, or from the Mac Terminal/
+* Git Kraken, which you can get from <https://www.gitkraken.com/>,
+  is a very popular tool, which has nice graphical interface and integration
+  with Windows Explorer and Mac Finder. It is free for educational, 
+  personal, and other non-commercial use.
+  
+  This is what I recommend.
+
+* If you don't want to use Git Kraken, you can install a bare-bones version of 
+  git that runs from the Windows command prompt, or from the Terminal
+  on Mac or Linux systems, but this is much more fussy.
   
   * For Windows, you can download and install git from 
     <https://git-scm.com/download/win>. 
@@ -33,8 +41,13 @@ There are two  good options for git that work
     $ git --version
     ```
     
-    If you don’t have it installed already, it will prompt you to install it
-    git and the XCode command line tools.
+    If you don’t have it installed already, it will prompt you to install it. 
+    If necessary, you can manually install the XCode command line tools,
+    which include git, by typing
+    ```
+    xcode-select --install
+    ```
+    in a Terminal window.
 
     If you want a more up to date version, you can also install it via a binary 
     installer. A macOS Git installer is maintained and available for download at 
@@ -51,11 +64,6 @@ There are two  good options for git that work
     sudo dnf install git-all
     ```
 
-* Git Kraken, which you can get from <https://www.gitkraken.com/>,
-  is a very popular tool, which has nice graphical interface and integration
-  with Windows Explorer and Mac Finder. It is free for educational, 
-  personal, and other non-commercial use.
-
 After you install Git, it is important to tell git who you are, so it will know
 how to identify you as the author of changes you make:
 
@@ -68,10 +76,10 @@ how to identify you as the author of changes you make:
   make sure your profile has your correct name and the email address you want
   to use.
   
-* Alternately, you can do this from the git command line:
+* Alternately, if you are using the command-line version of git:
 
   * Open a git command window:
-    * On Windows, open the program menu, go to "Git" and click on "Git Bash"
+    * On Windows, open the start menu, go to "Git" and click on "Git Bash"
     * On a Mac or Linux, open a terminal window
   * Run the two following commands:
     * `git config --global user.name "Your Name"` (using your own name instead of "Your Name")
@@ -321,8 +329,11 @@ keep.
 |  Original |  Computer 1 | Computer 2 |
 |:----------|:------------|:-----------|
 | Mary had a little lamb | Mary had a **great big lamb** | Mary had a little lamb |
+| | |
 | Its fleece was white as snow | Its fleece was white as **clouds** | Its fleece was white as **milk** |
+| | |
 | And everywhere that Mary went | And everywhere that Mary went | And everywhere that Mary **walked** |
+| | |
 | The lamb was sure to go | The lamb was sure to go | The lamb was sure to go |
 
 If you try to merge these, git can deal with the edits to the first and third 
@@ -345,7 +356,7 @@ The lamb was sure to go
 
 Then you have to manually edit the file to resolve the conflict. 
 There are graphical tools to help you manage merge conflicts (this is one of the 
-reasons people like to use graphical git tools like Source Tree or Git Kraken).
+reasons people like to use graphical git tools like Git Kraken).
 
 If you have conflicts, you will need to edit the files to resolve the conflicts
 and delete the lines git uses to mark conflicts 
