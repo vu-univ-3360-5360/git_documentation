@@ -12,8 +12,8 @@ this course.
 
 * Then, you should read about revision control in [Git_intro](Git_intro.pdf).
 
-* Before Tuesday, you should sign up for a free student account on
-  [github.com](https://education.github.com/discount_requests/new).
+* Before Tuesday, install Git Kraken on your computer and sign up for a free 
+  student account on [github.com](https://education.github.com/discount_requests/new).
   If you have any trouble getting the student account, you can sign up for a regular
   free account at <https://github.com> and then request an upgrade to a student
   account.
