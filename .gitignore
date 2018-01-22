@@ -44,3 +44,4 @@ vignettes/*.pdf
 *.out
 *.toc
 *.synctex.gz
+tex2pdf.*/

@@ -326,6 +326,7 @@ different lines on the two computers. However, if you edit the same lines on the
 two computers, git doesn't know which version of the changed lines you want to 
 keep.
 
+
 |  Original |  Computer 1 | Computer 2 |
 |:----------|:------------|:-----------|
 | Mary had a little lamb | Mary had a **great big lamb** | Mary had a little lamb |
@@ -336,12 +337,15 @@ keep.
 | | |
 | The lamb was sure to go | The lamb was sure to go | The lamb was sure to go |
 
+
 If you try to merge these, git can deal with the edits to the first and third 
 lines, but the two computers made incompatible edits to the second line and git 
 does not know whether to go with "clouds" or "milk".
 
 When you pull the changes from one computer onto the other, git will complain 
-about a conflict, and the file will look like
+about a conflict.
+
+If you open the conflicted file in a text editor, it will look like
 
 ```
 Mary had a great big lamb
@@ -354,12 +358,18 @@ And everywhere that Mary walked
 The lamb was sure to go
 ```
 
-Then you have to manually edit the file to resolve the conflict. 
-There are graphical tools to help you manage merge conflicts (this is one of the 
-reasons people like to use graphical git tools like Git Kraken).
+Then you have to edit the file to resolve the conflict. 
 
-If you have conflicts, you will need to edit the files to resolve the conflicts
-and delete the lines git uses to mark conflicts 
+There are graphical tools to help you manage merge conflicts much more easily
+and intuitively. This is one of the 
+reasons people like to use graphical git tools like Git Kraken.
+With Git Kraken, you can edit the conflicted files in an editor where you
+select which changes you want to keep from each file and then save and commit
+your file with the conflicts resolved.
+
+If you are using manual tools instead of something like Git Kraken,
+then when you have conflicts you will need to edit the files by hand
+to resolve the conflicts and delete the lines git uses to mark conflicts 
 (the ones beginning with `<<<<<<<`, `=======`, and `>>>>>>>`).
 Then you will need to stage the files where you resolved the changes
 and make a commit.
