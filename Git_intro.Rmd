@@ -77,7 +77,6 @@ how to identify you as the author of changes you make:
   to use.
   
 * Alternately, if you are using the command-line version of git:
-
   * Open a git command window:
     * On Windows, open the start menu, go to "Git" and click on "Git Bash"
     * On a Mac or Linux, open a terminal window
