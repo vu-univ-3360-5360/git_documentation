@@ -1,17 +1,23 @@
 ---
 title: "Introduction to Reproducible Research"
 author: "Jonathan Gilligan"
-date: "August 19, 2017"
+date: "January 23, 2018"
 bibliography: "Reproducible_research.bib"
 fontfamily: "newtxtext,newtxmath"
 fontsize: "12pt"
 output:
-  github_document: default
-  html_document: default
   pdf_document:
     includes:
       in_header: "preamble.tex"
+  html_document: default
+  github_document: default
 ---
+# Prefatory Note
+
+This document is adapted from an introduction to reproducible research that
+I wrote for the laboratory section of my Global Climate Change class, and 
+thus it has a lot of emphasis on climate science.
+
 # Why Do We Need Reproducible Research?
 
 In the spring of 2012, Bruno Iksil, a securities trader at 
@@ -216,11 +222,6 @@ is straightforward for a knowledgeable person to read and understand.
 Consistency checks to catch errors are much easier to implement in scripts than
 in spreadsheets.
 
-In the labs for EES 3310 and 5310, we will be using scripts for the R statistical
-analysis program to analyze climate data and the output of climate models.
-In the course of the semester, you will become increasingly familiar with the ideas
-of using analysis scripts to promote reproducible research.
-
 ## From the Analysis to the Manuscript
 
 Even when analysis is performed correctly, it can be difficult to transcribe
@@ -245,12 +246,16 @@ be changed.
 With modern computing tools, it has become easy to integrate the analysis with
 the final report.
 
-In the EES 3310 and 5310 laboratories, we will use a tool called RMarkdown, which
-allows you to combine the text of your lab reports with the scripts that perform 
-your data analysis and generate the figures and tables for your report.
+We won't get into it in this course, but there is a powerful tool 
+called RMarkdown, which
+allows you to combine the text of your documents with scripts that perform 
+data analysis and generate the figures and tables.
 Thus, any time you change a number in your data or change a line of code in your
-analysis script, the computer can automatically regenerate your report to 
+analysis script, the computer can automatically regenerate your document to 
 update all of the numbers and figures accordingly.
+This approach is widely used both in scientific research and in business,
+where it can easily automate the generation of monthly or quarterly reports
+from data.
 
 
 # Elements of Reproducible Research
@@ -265,153 +270,88 @@ One big distinction is between computational versus observational or empirical
 aspects of research.
 
 * Computational reproducibility provides detailed information on exactly how computations
-    (either calculations or simulations using computer models) were performed, 
-    and making it possible for others to exactly reproduce those computations or calculations.
-    This includes providing source code for programs and scripts written by the researcher, 
-    together with detailed specifications of the software (including the specific versions used), 
-    and the hardware used (running the same software on different computer hardware can 
-    sometimes give different results).
-    R has a function that will automatically report the computing hardware and 
-    software, so it will be trivial to add this to the end of all your laboratory
-    reports.
+  (either calculations or simulations using computer models) were performed, 
+  and making it possible for others to exactly reproduce those computations or calculations.
+  This includes providing source code for programs and scripts written by the researcher, 
+  together with detailed specifications of the software (including the specific versions used), 
+  and the hardware used (running the same software on different computer hardware can 
+  sometimes give different results).
 * Empirical reproducibility provides detailed information about laboratory or field
-    procedures that were used to acquire empirical data used in the analysis.
-    In practice, this is often accomplished by providing the raw data together with
-    details about how it was collected.
+  procedures that were used to acquire empirical data used in the analysis.
+  In practice, this is often accomplished by providing the raw data together with
+  details about how it was collected.
 
-In this laboratory, we will focus entirely on _computational reproducibility_.
-We will not address all the details of computational reproducibility in this
-laboratory, but we will focus on three important aspects:
+In this document, I will focus on _computational reproducibility_.
+I will not address all the details of computational reproducibility, 
+but I  will focus on three important aspects:
 
 * **Literate computing and authoring:** 
-    Literate computing refers to mixing computer code with narrative description
-    of what the code is doing. Stanford computer science professor Donald Knuth 
-    invented literate programming based on his experience with large software 
-    projects, where he found that if he wrote clear narrative descriptions of 
-    what his programming code was doing, he made fewer errors, and could find
-    and correct those errors more quickly. 
-    
-    In this laboratory, we will use RMarkdown and RStudio to apply literate
-    computing and authoring in laboratory activities and writing reports.
+  Literate computing refers to mixing computer code with narrative description
+  of what the code is doing. Stanford computer science professor Donald Knuth 
+  invented literate programming based on his experience with large software 
+  projects, where he found that if he wrote clear narrative descriptions of 
+  what his programming code was doing, he made fewer errors, and could find
+  and correct those errors more quickly. 
     
 * **Automation:** 
-    Many of you may be used to so-called "point-and-click" software
-    tools for statistical analysis. Examples include Excel, SPSS, and Stata.
-    These tools let you perform analysis by reading in your data and then highlighting
-    data with a mouse and selecting menu options.
-    This approach makes it easy to get started with these software packages 
-    when you are a beginner, but make it difficult to track exactly what you did
-    in your analysis, so when it comes time to write up your report, you may not
-    remember exactly what you did, and in what order you did it.
-    Automating your analysis using scripts means that your script contains the
-    complete information about everything you did.
+  Many of you may be used to so-called "point-and-click" software
+  tools for statistical analysis. Examples include Excel, SPSS, and Stata.
+  These tools let you perform analysis by reading in your data and then highlighting
+  data with a mouse and selecting menu options.
+  This approach makes it easy to get started with these software packages 
+  when you are a beginner, but make it difficult to track exactly what you did
+  in your analysis, so when it comes time to write up your report, you may not
+  remember exactly what you did, and in what order you did it.
+  Automating your analysis using scripts means that your script contains the
+  complete information about everything you did.
     
-    Some programs, such as Stata, allow you to record your analysis and export a 
-    script (a `.do` file) that will allow you or others to reproduce your analysis.
-    This is a valid form of reproducible research, but it is not the one we will
-    use in this course.
-    
-    Automation is also important if you have to do the same operation on many different data sets.
-    What seemed easy when you just had to create one graph or analysis can quickly
-    become tedious as you have to drag the mouse and click on the same menu entries 
-    over and over again on a dozen different data sets.
-    Automating your analysis with scripts makes it easy to run the same script on 
-    each of your different data sets.
+  Some programs, such as Stata, allow you to record your analysis and export a 
+  script (a `.do` file) that will allow you or others to reproduce your analysis.
+  This is a valid form of reproducible research, but it is not the one we will
+  use in this course.
+  
+  Automation is also important if you have to do the same operation on many different data sets.
+  What seemed easy when you just had to create one graph or analysis can quickly
+  become tedious as you have to drag the mouse and click on the same menu entries 
+  over and over again on a dozen different data sets.
+  Automating your analysis with scripts makes it easy to run the same script on 
+  each of your different data sets.
 
 * **Revision Control:**
-    As you edit both your text and the R scripts you use for your analysis, 
-    it is valuable to be able to keep track of changes. For instance, if your
-    analysis is working well, and then you edit something and it stops working
-    it is useful to be able to go back and look at what changed between the
-    time when it was working and when it stopped working.
+  As you edit both your text and the R scripts you use for your analysis, 
+  it is valuable to be able to keep track of changes. For instance, if your
+  analysis is working well, and then you edit something and it stops working
+  it is useful to be able to go back and look at what changed between the
+  time when it was working and when it stopped working.
     
-    Revision control systems allow you to easily keep track of changes you make
-    to your files. 
-    
-    Another important use of revision control is not relevant to this laboratory
-    section,
-    but applies to larger research projects. I have computational models that are
-    constantly under development and I publish papers based on them. Suppose that
-    another scientist has a question about a paper that I wrote two years ago, but
-    I have made many changes to the model since then. How can I go back and 
-    recreate the version of the model that I used for that paper?
-    Revision control systems make this very easy.
-    
-    Finally, revision control systems are very useful for team projects because they
-    allow a team of many researchers to coordinate their activities when they are all
-    editing files (computer code and text) for a project at the same time.
-    
-    We will be using a revision control tool called `git`. There is a web site
-    called [github.com](https://github.com), which allows people to share projects.
-    My students and I use github to release software that we develop in our research,
-    and there is an educational site connected to github, which we will use for 
-    laboratory assignments in EES 3310 and 5310.
-    
-    Everyone should sign up for a free student account on github.
-
-# Software Tools
-
-All the software you will need is installed on the computers in our laboratory classroom (SC 2200, right next to the Science and Engineering Library).
-If you want to install it on your personal computer, all the software we use is free and open source.
-
-* R <https://cran.rstudio.com/> Available for Windows, Mac OS X, and Linux
-
-* RStudio is available in many different options. What you want is the Open Source version of RStudio Desktop, which
-    you can download from <https://www.rstudio.com/products/rstudio/download/#download>. Be sure to
-    install R before you install RStudio.
-    
-    After you install RStudio, you will almost certainly want to install several optional packages for R
-    that we will use extensively for the labs. From the "packages" window in RStudio, click on "Install"
-    and install the following packages: "tidyverse", "knitr", "rmarkdown", "xts", "lme4",
-    "ggalt", "GGAlly", "ggExtra", "ggspectra", "ggspectra", 
-    "ggstance", "gtable", "hrbrthemes", and "pacman"
-
-* Git for revision control. You have three options:
-
-    * You can download Git from <https://git-scm.com/>
-    
-    * There is a very popular free git client called "Source Tree" that has some very nice 
-      graphical utilities that let you use git from Windows Explorer or Mac Finder.
-      You can get Source Tree from https://www.sourcetreeapp.com/ for Mac or Windows.
-      You will need to sign up for a free account at Atlassian to install it.
-      
-    * A third option is Git Kraken, which you can get from <https://www.gitkraken.com/>
-      Git Kraken is very popular, and is free for educational, personal, and other non-commercial use.
-      Git Kraken is available for Windows, Mac, and Linux.
-    
-    After you install Git, it is important to run two commands:
-    
-    * Open a git command line:
-
-        * On Windows, open the program menu, go to "Git" and click on "Git Bash"
-        * On a Mac, open a terminal window
-        
-    * Run the two following commands:
-    
-        * `git config --global user.name "Your Name"` (using your own name instead of "Your Name")
-        * `git config --global user.email "your.email.address@vanderbilt.edu"` (using your own email address)
-        
-    Git uses information to keep track of who makes changes to a file. If you are editing a file on your 
-    computer and a friend is editing it on her computer, git uses this user information to keep track of 
-    who made each change. Then when you and your friend merge your changes, git will be able to tell you
-    which of you edited what.
-
-## Optional Tools
-
-If you want to produce PDF files from RMarkdown, you will need to install the LaTeX software.
-
-If you have a Windows computer, I recommend MikTeX, which you can get from <https://miktex.org/download>
-
-If you have a Mac, I recommend the MacTeX distribution, which you can get from <http://www.tug.org/mactex/>
-
-On Linux, you should be able to install LaTeX using the package manager for your Linux distribution (e.g., `sudo apt-get install texlive-full` on Debian, Ubuntu or Mint; and `sudo yum install texlive` or `sudo dnf install texlive` on Fedora, CentOS, or other RedHat-based distributions)
+  Revision control systems allow you to easily keep track of changes you make
+  to your files. 
+  
+  Another important use of revision control is not relevant to this course,
+  but applies to larger research projects. I have computational models that are
+  constantly under development and I publish papers based on them. Suppose that
+  another scientist has a question about a paper that I wrote two years ago, but
+  I have made many changes to the model since then. How can I go back and 
+  recreate the version of the model that I used for that paper?
+  Revision control systems make this very easy.
+  
+  Finally, revision control systems are very useful for team projects because they
+  allow a team of many researchers to coordinate their activities when they are all
+  editing files (computer code and text) for a project at the same time.
+  
+  We will be using a revision control tool called `git`. There is a web site
+  called [github.com](https://github.com), which allows people to share projects.
+  My students and I use github to release software that we develop in our research,
+  and there is an educational site connected to github, which we will use for 
+  computational assignments in this course.
+  
+  Everyone should sign up for a free student account on github.
 
 # Walking the Walk
 
 Over the last five years I have become increasingly convinced that reproducible
 research methods are both more efficient and also lead to higher quality research.
-In my own research, I use the methods and many of the tools that we will use
-in this laboratory.
+I use these methods extensively in my own research.
 
 # Further Reading
 
